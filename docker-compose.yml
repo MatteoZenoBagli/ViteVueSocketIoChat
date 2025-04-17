@@ -1,0 +1,24 @@
+services:
+  server:
+    build: services/server
+    container_name: server
+    volumes:
+      - ./services/server/app:/usr/src/app
+    networks:
+      - service-network
+    ports:
+      - "3000:3000"
+
+  client:
+    build: services/client
+    container_name: client
+    volumes:
+      - ./services/client/app:/usr/src/app
+    networks:
+      - service-network
+    ports:
+      - "8080:8080"
+
+networks:
+  service-network:
+    driver: bridge
